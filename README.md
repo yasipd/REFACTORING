@@ -24,7 +24,7 @@ The app simulates a simple **video rental store system**, where:
 
 ## What Was Refactored
 
-We started from a **long, procedural `statement()` method** in the `Customer` class. It was:
+I started from a **long, procedural `statement()` method** in the `Customer` class. It was:
 - Calculating charges
 - Building strings
 - Containing switch logic
