@@ -63,7 +63,6 @@ Make sure you have [JUnit Console Standalone](https://repo1.maven.org/maven2/org
 
 #### 1. Compile everything:
 
-```bash
 javac -cp ".:lib/junit-platform-console-standalone-1.12.2.jar" -d bin src/*.java test/*.java
 
 #### 2. Run the tests:
