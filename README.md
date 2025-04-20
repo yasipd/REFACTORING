@@ -42,5 +42,45 @@ This broke the **Single Responsibility Principle**.
 
 ---
 
+## Testing the Application
 
+This project includes a full **JUnit 5 (Jupiter)** test suite.  
+The tests cover all the core components of the application to ensure correctness and easy future maintenance.
+
+### Test Coverage
+
+| Class        | Test Class        | Coverage Description                                      |
+|--------------|-------------------|------------------------------------------------------------|
+| `Customer`   | `CustomerTest`    | Tests statement generation and frequent renter points      |
+| `Rental`     | `RentalTest`      | Tests charge calculation and bonus point logic             |
+| `Movie`      | `MovieTest`       | Tests title and price code getter/setter methods           |
+
+---
+
+### Running the Tests (Manual CLI Method)
+
+Make sure you have [JUnit Console Standalone](https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.12.2/junit-platform-console-standalone-1.12.2.jar) downloaded in your `lib/` folder.
+
+#### 1. Compile everything:
+
+```bash
+javac -cp ".:lib/junit-platform-console-standalone-1.12.2.jar" -d bin src/*.java test/*.java
+
+#### 2. Run the tests:
+java -jar lib/junit-platform-console-standalone-1.12.2.jar --class-path bin --scan-class-path
+
+### 3.Output
+
+├─ JUnit Jupiter ✔
+│  ├─ MovieTest ✔
+│  │  └─ testMovieGettersAndSetters() ✔
+│  ├─ CustomerTest ✔
+│  │  ├─ testFrequentRenterPointsForNewReleaseOneDay() ✔
+│  │  └─ testStatementWithMultipleRentals() ✔
+│  └─ RentalTest ✔
+│     ├─ testFrequentRenterPointsStandard() ✔
+│     ├─ testGetChargeForRegularMovie() ✔
+│     ├─ testGetChargeForChildrensMovie() ✔
+│     ├─ testGetChargeForNewRelease() ✔
+│     └─ testFrequentRenterPointsBonus() ✔
 
