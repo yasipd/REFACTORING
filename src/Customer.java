@@ -3,7 +3,7 @@ import java.util.Vector;
 
 public class Customer {
     private String name;
-    private Vector rentals = new Vector();
+    private Vector<Rental> rentals = new Vector<>();
 
     public Customer(String name) {
         this.name = name;
@@ -18,27 +18,30 @@ public class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        Enumeration rentalsEnum = rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
+        return new TextStatement().value(this);
+    }
 
-        while (rentalsEnum.hasMoreElements()) {
-            Rental each = (Rental) rentalsEnum.nextElement();
+    public Enumeration<Rental> getRentals() {
+        return rentals.elements();
+    }
 
-            double thisAmount = each.getCharge(); 
-
-            frequentRenterPoints += each.getFrequentRenterPoints();
-
-
-            //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
-            totalAmount += thisAmount;
+    public double getTotalCharge() {
+        double result = 0;
+        Enumeration<Rental> rentals = getRentals();
+        while (rentals.hasMoreElements()) {
+            Rental rental = rentals.nextElement();
+            result += rental.getCharge();
         }
+        return result;
+    }
 
-        //add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+    public int getTotalFrequentRenterPoints() {
+        int result = 0;
+        Enumeration<Rental> rentals = getRentals();
+        while (rentals.hasMoreElements()) {
+            Rental rental = rentals.nextElement();
+            result += rental.getFrequentRenterPoints();
+        }
         return result;
     }
 }
