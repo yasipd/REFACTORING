@@ -4,7 +4,7 @@ import java.util.*;
 
 class Customer {
     private String name;
-    private Vector rentals = new Vector();
+    private List<Rental> rentals = new ArrayList<>();
     public Customer (String newname){
         name = newname;
     };
