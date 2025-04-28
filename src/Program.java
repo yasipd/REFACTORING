@@ -2,8 +2,8 @@ public class Program {
     public static void main(String[] args) {
         System.out.println("Welcome to the Movie Store");
 
-        Movie m1 = new Movie("Movie 1", Movie.NEW_RELEASE);
-        Movie m2 = new Movie("Movie 2", Movie.CHILDRENS);
+        Movie m1 = new NewReleaseMovie("Movie 1");
+        Movie m2 = new ChildrenMovie("Movie 2");
 
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
