@@ -21,7 +21,7 @@ public class Customer {
         return rentals;
     }
 
-    // --- Moved here ---
+    // New method: moved from TextStatement
     public String getRentalLines() {
         StringBuilder result = new StringBuilder();
         for (Rental rental : rentals) {

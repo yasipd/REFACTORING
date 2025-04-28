@@ -1,20 +1,17 @@
 import java.util.Enumeration;
-public class TextStatement {
+public class TextStatement extends Statement {
+    @Override
     public String value(Customer customer) {
-        String result = "Rental Record for " + customer.getName() + "\n";
-        result += getRentalLines(customer);
-        result += "Amount owed is " + customer.getTotalCharge() + "\n";
-        result += "You earned " + customer.getTotalFrequentRenterPoints() + " frequent renter points";
-        return result;
-    }
-
-    private String getRentalLines(Customer customer) {
-        String result = "";
-        Enumeration<Rental> rentals = customer.getRentals();
-        while (rentals.hasMoreElements()) {
-            Rental rental = rentals.nextElement();
-            result += "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n";
-        }
-        return result;
+        StringBuilder result = new StringBuilder();
+        result.append("Rental Record for ").append(customer.getName()).append("\n");
+        
+        // Instead of doing the rental loop here, we delegate:
+        result.append(customer.getRentalLines());
+        
+        result.append("Amount owed is ").append(customer.getTotalCharge()).append("\n");
+        result.append("You earned ").append(customer.getTotalFrequentRenterPoints())
+              .append(" frequent renter points");
+        
+        return result.toString();
     }
 }
