@@ -1,47 +1,36 @@
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
     private String name;
-    private Vector<Rental> rentals = new Vector<>();
+    private List<Rental> rentals = new ArrayList<>();
 
     public Customer(String name) {
         this.name = name;
     }
 
     public void addRental(Rental rental) {
-        rentals.addElement(rental);
+        rentals.add(rental);
     }
 
     public String getName() {
         return name;
     }
 
-    public String statement() {
-        return new TextStatement().value(this);
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
-    public Enumeration<Rental> getRentals() {
-        return rentals.elements();
-    }
-
-    public double getTotalCharge() {
-        double result = 0;
-        Enumeration<Rental> rentals = getRentals();
-        while (rentals.hasMoreElements()) {
-            Rental rental = rentals.nextElement();
-            result += rental.getCharge();
+    // --- Moved here ---
+    public String getRentalLines() {
+        StringBuilder result = new StringBuilder();
+        for (Rental rental : rentals) {
+            result.append("\t")
+                  .append(rental.getMovie().getTitle())
+                  .append("\t")
+                  .append(rental.getCharge())
+                  .append("\n");
         }
-        return result;
-    }
-
-    public int getTotalFrequentRenterPoints() {
-        int result = 0;
-        Enumeration<Rental> rentals = getRentals();
-        while (rentals.hasMoreElements()) {
-            Rental rental = rentals.nextElement();
-            result += rental.getFrequentRenterPoints();
-        }
-        return result;
+        return result.toString();
     }
 }
